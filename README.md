@@ -1,6 +1,6 @@
 # Pachena
 
-Glassdoor for Africa — anonymous but verified employee reviews, salary data, and a public job board.
+Workplace transparency platform — anonymous but verified employee reviews, salary data, and a public job board.
 
 **Live site:** [pachena.co](https://pachena.co)
 
