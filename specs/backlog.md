@@ -8,16 +8,16 @@ Format: `[ ]` = todo, `[x]` = done, `[~]` = in progress
 
 ## Phase 0 — Foundation [DevOps Agent]
 
-- [ ] **[DevOps]** Initialize git repository at `pachena/` root, create initial commit with all scaffold files
-- [ ] **[DevOps]** Create GitHub repository `pachena` (private), push initial commit
-- [ ] **[DevOps]** Create root `package.json` with npm workspaces (`apps/*`, `packages/*`) and top-level scripts (`dev`, `build`, `lint`, `typecheck`)
-- [ ] **[DevOps]** Create `.gitignore` at repo root (node_modules, .next, .env, .env.local, .supabase)
-- [ ] **[DevOps]** Scaffold `apps/web/` — run `npx create-next-app@latest web --typescript --tailwind --app --src-dir --import-alias "@/*"` inside `apps/`
-- [ ] **[DevOps]** Create `apps/web/.env.example` with all required env var names (no values)
-- [ ] **[DevOps]** Connect GitHub repo to Vercel, set root directory to `apps/web`, verify a build deploys
-- [ ] **[DevOps]** Create `.github/workflows/ci.yml` — runs typecheck + lint + build on PR to main/staging
-- [ ] **[DevOps]** Create dev Supabase project, document the project ref in `specs/architecture.md`
-- [ ] **[DevOps]** Create `README.md` at repo root with local dev setup instructions
+- [x] **[DevOps]** Initialize git repository at `pachena/` root, create initial commit with all scaffold files
+- [ ] **[DevOps]** Create GitHub repository `pachena` (private), push initial commit — **NEEDS MANUAL ACTION** (install `gh` CLI or create via browser, then `git remote add origin <url> && git push -u origin main`)
+- [x] **[DevOps]** Create root `package.json` with npm workspaces (`apps/*`, `packages/*`) and top-level scripts (`dev`, `build`, `lint`, `typecheck`)
+- [x] **[DevOps]** Create `.gitignore` at repo root (node_modules, .next, .env, .env.local, .supabase)
+- [x] **[DevOps]** Scaffold `apps/web/` — Next.js 15 App Router, TypeScript strict, Tailwind, src/, @/* alias (manual scaffold — Node.js not in PATH)
+- [x] **[DevOps]** Create `apps/web/.env.example` with all required env var names (no values)
+- [ ] **[DevOps]** Connect GitHub repo to Vercel, set root directory to `apps/web`, verify a build deploys — **NEEDS MANUAL ACTION** (requires GitHub repo to exist first)
+- [x] **[DevOps]** Create `.github/workflows/ci.yml` — runs typecheck + lint + build on PR to main/staging
+- [ ] **[DevOps]** Create dev Supabase project, document the project ref in `specs/architecture.md` — **NEEDS MANUAL ACTION** (create project at supabase.com, then update `specs/architecture.md` with the project ref)
+- [x] **[DevOps]** Create `README.md` at repo root with local dev setup instructions
 
 ---
 
