@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -77,18 +76,16 @@ export default function Review() {
   const hasMore = displayCount < filteredCompanies.length;
   const isSearching = searchQuery.trim().length >= 1;
 
-  const router = useRouter();
-
   const handleSelectCompany = (company: CompanyOption) => {
     setSelectedCompany(company);
     setShowSectionPicker(true);
-    router.replace(`/company/${company.slug}/review`);
+    window.history.replaceState(null, '', `/company/${company.slug}/review`);
   };
 
   const handleSectionPickerClose = () => {
     setShowSectionPicker(false);
     setSelectedCompany(null);
-    router.replace("/review");
+    window.history.replaceState(null, '', "/review");
   };
 
   const handleLoadMore = () => {

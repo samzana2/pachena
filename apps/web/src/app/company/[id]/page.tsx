@@ -27,7 +27,7 @@ export async function generateMetadata({
   const { data: company } = await supabase
     .from('companies')
     .select('name, description')
-    .eq('id', id)
+    .eq('slug', id)
     .single()
 
   if (!company) return {}
@@ -48,22 +48,28 @@ export default async function CompanyPage({
   const { id } = await params
   const supabase = await createServerSupabaseClient()
 
+  const { data: company } = await supabase
+    .from('companies')
+    .select('*')
+    .eq('slug', id)
+    .single()
+
+  if (!company) notFound()
+
+  const companyId = company.id
+
   const [
-    { data: company },
     { data: reviews },
     { data: reviewSections },
     { data: jobs },
     { data: benefits },
   ] = await Promise.all([
-    supabase.from('companies').select('*').eq('id', id).single(),
-    supabase.from('reviews_public').select('*').eq('company_id', id),
+    supabase.from('reviews_public').select('*').eq('company_id', companyId),
     // review_sections_public exposes company_id (not review_id), so filter by company
-    supabase.from('review_sections_public').select('*').eq('company_id', id),
-    supabase.from('jobs').select('*').eq('company_id', id).eq('is_active', true),
-    supabase.from('company_benefits').select('*').eq('company_id', id),
+    supabase.from('review_sections_public').select('*').eq('company_id', companyId),
+    supabase.from('jobs').select('*').eq('company_id', companyId).eq('is_active', true),
+    supabase.from('company_benefits').select('*').eq('company_id', companyId),
   ])
-
-  if (!company) notFound()
 
   return (
     <CompanyDetailClient
