@@ -22,15 +22,22 @@ Central table for all company profiles.
 | `logo_url` | text | |
 | `website` | text | |
 | `description` | text | |
-| `founded_year` | int | |
-| `company_size` | text | e.g. "51-200" |
+| `year_founded` | int | Note: column is `year_founded`, not `founded_year` |
+| `employee_count` | text | e.g. "51-200" — Note: column is `employee_count`, not `company_size` |
+| `headquarters` | text | HQ city/country |
+| `mission` | text | Company mission statement |
+| `ceo` | text | CEO name |
 | `is_claimed` | bool | Whether employer has claimed |
-| `is_verified` | bool | Admin verified |
-| `is_active` | bool | Visible on platform |
+| `claimed_by` | uuid FK → auth.users | User who claimed the company |
+| `claimed_at` | timestamptz | When claim was made |
+| `linkedin_url` | text | LinkedIn company page |
+| `approved_review_count` | int | Cached count of approved reviews |
 | `created_at` | timestamptz | |
 | `updated_at` | timestamptz | |
 
-Public view: `companies` (with RLS — only `is_active = true` rows visible publicly)
+> **Note:** `is_verified` and `is_active` do NOT exist in the current schema (they were in an earlier spec draft but never migrated). The public RLS policy allows all companies to be read. Visibility filtering uses `is_claimed` status only.
+
+Public view: `companies` (with RLS — all rows publicly readable)
 
 ### `reviews`
 Employee review submissions.
@@ -78,10 +85,18 @@ Employee review submissions.
 | `interview_tips` | text | |
 | `end_year` | int | For former employees |
 | `helpful_count` | int | Cached helpful votes |
-| `status` | text | "pending" / "approved" / "rejected" |
+| `moderation_status` | text | "approved" / "rejected" — default `approved` — Note: column is `moderation_status`, not `status` |
+| `flagged` | bool | Manually flagged for review |
+| `moderation_notes` | text | Admin moderation notes |
+| `moderated_at` | timestamptz | When moderation action was taken |
+| `moderated_by` | uuid FK → auth.users | Admin who moderated |
+| `report_count` | int | Cached count of user reports |
+| `hidden_fields` | text[] | Fields hidden by admin |
+| `ai_fraud_summary` | jsonb | Output from detect-fraud-ai |
+| `review_session_id` | uuid FK → review_sessions | Session used to submit this review |
 | `created_at` | timestamptz | |
 
-Public view: `reviews_public` — only approved reviews, no sensitive fields
+Public view: `reviews_public` — only `moderation_status = 'approved'` reviews, no sensitive fields
 
 ### `review_sections`
 Modular sections within section-based reviews.
@@ -328,5 +343,5 @@ User session event tracking for analytics.
 
 ---
 
-*Last updated: 2026-04-01 — bootstrapped from Lovable export types.ts*
+*Last updated: 2026-04-02 — corrected column names against actual migrations (year_founded, employee_count, moderation_status); removed non-existent is_active/is_verified from companies; added missing review columns*
 *Backend Agent: update this file after every migration that adds/changes tables or columns*

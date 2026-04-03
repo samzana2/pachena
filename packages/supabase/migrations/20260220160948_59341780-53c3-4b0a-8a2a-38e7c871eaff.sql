@@ -1,0 +1,1 @@
+ALTER TABLE public.review_sections ADD COLUMN ai_moderation_summary jsonb DEFAULT NULL;

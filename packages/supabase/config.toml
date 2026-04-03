@@ -1,0 +1,73 @@
+project_id = "gfeghdulunbbvyjymtth"
+
+[functions.send-contact-notification]
+verify_jwt = false
+
+[functions.submit-review]
+verify_jwt = false
+
+[functions.manage-claims]
+verify_jwt = false
+
+[functions.submit-claim]
+verify_jwt = false
+
+[functions.moderate-reviews]
+verify_jwt = false
+
+[functions.send-company-approved-email]
+verify_jwt = false
+
+[functions.manage-admin-users]
+verify_jwt = false
+
+[functions.send-company-request-confirmation]
+verify_jwt = false
+
+[functions.flag-review]
+verify_jwt = false
+
+[functions.send-claim-confirmation]
+verify_jwt = false
+
+[functions.send-claim-denied-email]
+verify_jwt = false
+
+[functions.polish-review-text]
+verify_jwt = false
+
+[functions.create-unverified-session]
+verify_jwt = false
+
+[functions.create-review-session]
+verify_jwt = false
+
+[functions.submit-review-section]
+verify_jwt = false
+
+[functions.analyze-review]
+verify_jwt = false
+
+[functions.detect-review-similarity]
+verify_jwt = false
+
+[functions.detect-fraud-ai]
+verify_jwt = false
+
+[functions.analyze-section]
+verify_jwt = false
+
+[functions.test-analyze-section]
+verify_jwt = false
+
+[functions.daily-health-check]
+verify_jwt = false
+
+[functions.extract-job-details]
+verify_jwt = false
+
+[functions.publish-social-post]
+verify_jwt = false
+
+[functions.send-waitlist-confirmation]
+verify_jwt = false

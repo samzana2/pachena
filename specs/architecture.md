@@ -79,7 +79,7 @@ This file records architectural decisions for the Pachena platform. Maintained b
 | Environment | Project Ref | Notes |
 |---|---|---|
 | Production | `bfqojnqffebygrwtkcbs` | Live Lovable app — read-only until cutover |
-| Dev | TBD | DevOps Agent creates this in Phase 0 |
+| Dev | `gfeghdulunbbvyjymtth` | DevOps Agent creates this in Phase 0 |
 
 ## Key Domain
 

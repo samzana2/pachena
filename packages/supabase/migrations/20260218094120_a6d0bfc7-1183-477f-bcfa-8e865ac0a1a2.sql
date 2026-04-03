@@ -1,0 +1,1 @@
+ALTER TABLE public.reviews ADD COLUMN ai_fraud_summary jsonb DEFAULT NULL;

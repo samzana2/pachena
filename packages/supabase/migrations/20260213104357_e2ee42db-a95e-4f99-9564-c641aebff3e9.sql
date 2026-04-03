@@ -1,0 +1,1 @@
+ALTER TABLE public.reviews ADD COLUMN hidden_fields text[] DEFAULT '{}';

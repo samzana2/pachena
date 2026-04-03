@@ -109,7 +109,9 @@ Submits a single section of a modular/section-based review.
 
 ## create-review-session
 
-Creates an email verification session before a review can be submitted.
+Creates a session for the section-based review wizard. Writes to `review_sessions` table.
+
+> **Note:** Despite the name, this function does NOT send a verification email. It creates a review session for the multi-section wizard flow (`submit-review-section`). The email-verification flow described in earlier spec drafts was replaced by the unverified session flow.
 
 **Method:** POST
 **Auth:** None
@@ -118,22 +120,22 @@ Creates an email verification session before a review can be submitted.
 ```ts
 {
   company_id: string
-  email: string
+  honeypot_field?: string  // Must be empty — spam protection
 }
 ```
 
 **Response (200):**
 ```ts
-{ success: true; session_id: string; message: string }
+{ session_id: string; session_token: string }
 ```
 
-Sends a verification email to the provided address. The email contains a link with `?t=<token>&c=<company_id>&s=<session_id>`.
+**Side effects:** None (no email sent)
 
 ---
 
 ## create-unverified-session
 
-Creates a session without email verification (for unverified reviews).
+Creates a verification session for the legacy single-form review flow. Writes to `verification_sessions` table with `email_domain = "unverified"` and `verified = true`.
 
 **Method:** POST
 **Auth:** None
@@ -142,13 +144,16 @@ Creates a session without email verification (for unverified reviews).
 ```ts
 {
   company_id: string
+  honeypot_field?: string  // Must be empty — spam protection
 }
 ```
 
 **Response (200):**
 ```ts
-{ success: true; session_id: string; review_token: string }
+{ session_id: string; review_token: string }
 ```
+
+Pass `session_id` and `review_token` to `submit-review`.
 
 ---
 
@@ -436,5 +441,5 @@ Checks DB connectivity, function availability, and logs a health status.
 
 ---
 
-*Last updated: 2026-04-01 — bootstrapped from Lovable export*
+*Last updated: 2026-04-02 — corrected create-review-session (no email, writes to review_sessions); corrected create-unverified-session response shape; added honeypot_field to both session functions*
 *Backend Agent: update this file immediately after any function change*

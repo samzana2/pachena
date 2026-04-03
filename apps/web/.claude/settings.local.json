@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/samue/projects/pachena-lovable/pachena-main/**)",
+      "Bash(npx tsc:*)",
+      "Bash(sed -i 's/Linkedin,/ExternalLink,/g; s/Instagram,/Share2,/g; s/Facebook,/Users,/g' C:/Users/samue/projects/pachena/apps/web/src/__TRACKED_VAR__)",
+      "Bash(sed -i 's/<Linkedin/<ExternalLink/g; s/<Instagram/<Share2/g; s/<Facebook/<Users/g' C:/Users/samue/projects/pachena/apps/web/src/__TRACKED_VAR__)",
+      "Bash(node -e \"const rhf = require\\('C:/Users/samue/projects/pachena/node_modules/react-hook-form/package.json'\\); console.log\\(rhf.version\\)\")",
+      "Bash(node -e \"const r = require\\('C:/Users/samue/projects/pachena/node_modules/@hookform/resolvers/package.json'\\); console.log\\(r.version, r.peerDependencies\\)\")",
+      "Read(//c/Users/samue/projects/pachena/node_modules/@hookform/resolvers/**)",
+      "Bash(node -e \"const z = require\\('C:/Users/samue/projects/pachena/node_modules/zod/package.json'\\); console.log\\(z.version\\)\")",
+      "Bash(node:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
