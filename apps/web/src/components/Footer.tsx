@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import { ExternalLink, Share2 } from "lucide-react";
 import { useFeatureFlags } from "@/hooks/useFeatureFlags";
