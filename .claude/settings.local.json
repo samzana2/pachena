@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/samue/projects/pachena-lovable/pachena-main/src/pages/**)",
+      "Read(//c/Users/samue/projects/pachena-lovable/pachena-main/src/**)"
+    ]
+  }
+}

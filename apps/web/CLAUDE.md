@@ -207,9 +207,23 @@ The `components.json` config is already set up. Don't modify it without co-archi
 
 ---
 
+## Managing Session Scope — Token Limits
+
+Each session has a finite context window. Follow these rules to avoid hitting the limit mid-task:
+
+- **Finish one task completely before starting the next.** A fully working page is always better than two half-built ones.
+- **For complex pages, use the two-session split pattern:**
+  - Session A: Server Component shell + stub client component that compiles. Report back once build passes.
+  - Session B: Full client component implementation.
+- **If you sense you are approaching your context limit** (many files read, long back-and-forth), stop at the next clean checkpoint where the build passes and the backlog is updated. Report back to the co-architect rather than starting the next task.
+- **Always confirm `npm run build` passes before reporting a task complete.** A task is not done until the build is green.
+
+---
+
 ## When to Stop and Ask the Co-Architect
 
 - You need a new edge function or DB column that doesn't exist in `specs/api-contracts.md`
 - A page requires data that isn't exposed via existing Supabase tables/views
 - You're unsure whether a feature should be SSR or client-side
 - Any change that affects `specs/` files
+- You are approaching your context limit mid-task

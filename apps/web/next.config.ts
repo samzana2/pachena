@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/verify',
+        destination: '/go',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

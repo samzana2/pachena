@@ -93,6 +93,16 @@ cd /c/Users/samue/projects/pachena && claude
 5. **Cross-boundary changes require co-architect sign-off.** If you need to touch a file outside your directory, stop and describe the need. The co-architect will either delegate it or instruct you.
 6. **Check `specs/backlog.md` for your next task.** Tasks are labelled by agent. Pick the next `[ ]` item labelled for you.
 
+## Session Scope & Token Limits
+
+Each agent session has a finite context window. Hitting the limit mid-task leaves work in a broken or partial state. To avoid this:
+
+- **Co-architect scopes prompts to 2-3 routes or one focused task maximum.** Never assign an entire phase in one prompt.
+- **Agents: complete one task fully before starting the next.** A finished, building task is always better than two half-done ones.
+- **Complex pages get split into two sessions:** Session A = data fetching shell + stub client component (build passes). Session B = full client component implementation. The company detail page (`/company/[id]`) is a proven example of this pattern.
+- **Agents: if you can sense you are approaching your context limit** (long conversation, many files read), stop at the next clean checkpoint — build passing, backlog updated — and report back rather than starting the next task.
+- **If a session ends mid-task:** the co-architect checks what files were actually created, then writes a targeted continuation prompt that describes exactly what exists and what remains. Never tell a new session to "continue where you left off" — it has no memory of the previous session.
+
 ---
 
 ## Key Constraints
