@@ -74,38 +74,42 @@ Format: `[ ]` = todo, `[x]` = done, `[~]` = in progress
 - [x] **[Frontend]** Port `src/app/page.tsx` (Home / Index) — Server Component, pre-render featured companies
 - [x] **[Frontend]** Port `src/app/companies/page.tsx` — Server Component with search/filter
 - [x] **[Frontend]** Port `src/app/company/[id]/page.tsx` — Server Component + `generateMetadata` for OG tags
-- [ ] **[Frontend]** Port `src/app/jobs/page.tsx` — Server Component
-- [ ] **[Frontend]** Port `src/app/jobs/[id]/page.tsx` — Server Component + `generateMetadata`
-
-> **Note — Jobs pages:** Port the existing Lovable job board UI faithfully. Any new jobs features (enhanced filtering, recommendations, etc.) require PM/CEO input first — do not extend beyond what Lovable has.
+- [x] **[Frontend]** Fix: company detail page was querying by UUID but URLs use slugs — changed `.eq('id', id)` to `.eq('slug', id)` and resolve UUID for related queries
+- [ ] **[Frontend]** Port `src/app/jobs/page.tsx` — Server Component *(DEFERRED — pending PM/CEO discussion on jobs features)*
+- [ ] **[Frontend]** Port `src/app/jobs/[id]/page.tsx` — Server Component + `generateMetadata` *(DEFERRED — pending PM/CEO discussion)*
 
 ### 3b — Info Pages (Static / Server Components)
 
-- [ ] **[Frontend]** Port `/about`, `/faq`, `/contact`, `/terms`, `/privacy`, `/guidelines`, `/employer-guidelines`
+- [x] **[Frontend]** Port `/about`, `/faq`, `/contact`, `/terms`, `/privacy`, `/guidelines`, `/employer-guidelines` — all created under `src/app/(info)/`
+- [ ] **[Frontend]** Split `/faq` and `/contact` interactive forms into separate client sub-components so `generateMetadata` can be exported from the page — low priority polish task
 
 ### 3c — Interactive Public Pages (Client Components)
 
-- [ ] **[Frontend]** Port `src/app/review/page.tsx` (company search + start review)
-- [ ] **[Frontend]** Port `src/app/review/submit/page.tsx` (section wizard)
-- [ ] **[Frontend]** Port `src/app/auth/page.tsx`
-- [ ] **[Frontend]** Port `src/app/go/page.tsx` (email verification handler, preserves `?t=&c=&s=` params)
-- [ ] **[Frontend]** Port `src/app/claim/page.tsx`
-- [ ] **[Frontend]** Port `src/app/request-company/page.tsx`
+- [x] **[Frontend]** Port `src/app/auth/page.tsx`
+- [x] **[Frontend]** Port `src/app/go/page.tsx` (email verification handler)
+- [x] **[Frontend]** Add `/verify` → `/go` redirect in `next.config.ts` (preserves query params)
+- [x] **[Frontend]** Port `src/app/review/page.tsx` (company search + start review)
+- [x] **[Frontend]** Fix: replaced `router.replace()` with `window.history.replaceState()` for cosmetic URL changes on `/review` — `router.replace()` triggers real Next.js navigation, causing 404 on `/company/[slug]/review`
+- [x] **[Frontend]** Port `src/app/review/submit/page.tsx` (section wizard)
+- [x] **[Frontend]** Port `src/app/claim/page.tsx`
+- [x] **[Frontend]** Port `src/app/request-company/page.tsx`
 
 ### 3d — Employer Dashboard (Client Components)
 
-> **DEFERRED — requires PM/CEO input before building.** Port the shell and sidebar structure now so routing works, but individual dashboard pages (jobs, applications, insights) need product decisions before implementation. For now, each sub-page renders a placeholder.
-
-- [ ] **[Frontend]** Port `src/app/employer/dashboard/layout.tsx` (EmployerDashboardShell + EmployerSidebar)
-- [ ] **[Frontend]** Port overview and company profile pages (these match Lovable closely, no new decisions needed)
-- [ ] **[Frontend]** Port reviews page (respond to reviews — matches Lovable)
-- [ ] **[Frontend]** Port inbox and settings pages (matches Lovable)
-- [ ] **[Frontend]** Stub jobs, applications, insights pages with "Coming Soon" placeholder — pending PM/CEO direction
+- [x] **[Frontend]** Port `src/app/employer/dashboard/layout.tsx` — server-side auth guard (redirects to `/auth` if no session) + EmployerProvider + EmployerDashboardShell
+- [x] **[Frontend]** Port overview page (`dashboard/page.tsx`)
+- [x] **[Frontend]** Port company profile page (`dashboard/company/page.tsx`)
+- [x] **[Frontend]** Port reviews page (`dashboard/reviews/page.tsx`)
+- [x] **[Frontend]** Port inbox page (`dashboard/inbox/page.tsx`)
+- [x] **[Frontend]** Port settings page (`dashboard/settings/page.tsx`)
+- [x] **[Frontend]** Stub jobs, applications, insights pages with "Coming Soon" placeholder — pending PM/CEO direction
+- [x] **[Co-Architect / Manual]** Enable feature flags in dev Supabase `feature_flags` table: set `employer_nav_links` and `employer_footer_section` to `true` to expose employer links in Header and Footer
 
 ### 3e — Admin Panel (Client Components)
 
-- [ ] **[Frontend]** Port `src/app/admin/auth/page.tsx`
-- [ ] **[Frontend]** Port all admin pages (companies, reviews, claims, settings, contact-messages, company-requests, waitlist, spam-analytics, insights, social, jobs, seed-job)
+- [x] **[Frontend]** Port `src/app/admin/auth/page.tsx`
+- [x] **[Frontend]** Port admin core pages: `page.tsx` (dashboard), reviews, settings, insights, spam-analytics, jobs, waitlist
+- [x] **[Frontend]** Port admin data pages: claims, companies, `companies/[id]/edit`, company-requests, contact-messages, social, seed-job
 
 ### 3f — Final
 
