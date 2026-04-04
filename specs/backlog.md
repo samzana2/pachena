@@ -113,12 +113,12 @@ Format: `[ ]` = todo, `[x]` = done, `[~]` = in progress
 
 ### 3f — Final
 
-- [ ] **[Frontend]** Port `src/app/moderation/page.tsx`
-- [ ] **[Frontend]** Port `src/app/insights/page.tsx`
-- [ ] **[Frontend]** Port `src/app/employers/page.tsx` — port the existing "Coming Soon" page from Lovable as-is; full employers landing page requires PM/CEO input
-- [ ] **[Frontend]** Add `src/app/not-found.tsx` (404 page)
-- [ ] **[Frontend]** Verify all routes work end-to-end against dev Supabase
-- [ ] **[Frontend]** Run Lighthouse on `/`, `/companies`, `/company/[id]` — target 90+ SEO score
+- [x] **[Frontend]** Port `src/app/moderation/page.tsx`
+- [x] **[Frontend]** Port `src/app/insights/page.tsx`
+- [x] **[Frontend]** Port `src/app/employers/page.tsx` — ported as-is (Coming Soon); full employers landing page requires PM/CEO input
+- [x] **[Frontend]** Add `src/app/not-found.tsx` (404 page)
+- [x] **[Frontend]** Verify all routes work end-to-end against dev Supabase
+- [x] **[Frontend]** Run Lighthouse on `/`, `/companies`, `/company/[id]` — target 90+ SEO score
 
 ---
 
